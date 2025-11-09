@@ -10,3 +10,10 @@ struct Peca {
     int id;
 };
 
+// Variáveis globais para a fila
+struct Peca fila[TAMANHO_FILA];
+int inicio = 0;
+int fim = 0;
+int totalPecas = 0;
+int proximoId = 0;
+
