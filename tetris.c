@@ -79,3 +79,62 @@ int main() {
     return 0;
 }
 
+// Gera uma peça aleatória e adiciona à fila
+void gerarPeca() {
+    if (totalPecas >= TAMANHO_FILA) {
+        return;
+    }
+    
+    struct Peca novaPeca;
+    char tipos[] = {'I', 'O', 'T', 'L', 'J', 'S', 'Z'};
+    
+    novaPeca.tipo = tipos[rand() % 7];
+    novaPeca.id = proximoId++;
+    
+    enfileirar(novaPeca);
+}
+
+// Adiciona peça no final da fila
+void enfileirar(struct Peca novaPeca) {
+    if (totalPecas >= TAMANHO_FILA) {
+        return;
+    }
+    
+    fila[fim] = novaPeca;
+    fim = (fim + 1) % TAMANHO_FILA;
+    totalPecas++;
+}
+
+// Remove peça do início da fila
+void desenfileirar() {
+    if (totalPecas == 0) {
+        return;
+    }
+    
+    printf("\n🎮 Jogando peça: [%c %d]\n", fila[inicio].tipo, fila[inicio].id);
+    
+    inicio = (inicio + 1) % TAMANHO_FILA;
+    totalPecas--;
+}
+
+// Mostra todas as peças na fila
+void mostrarFila() {
+    if (totalPecas == 0) {
+        printf("Fila vazia!\n");
+        return;
+    }
+    
+    int pos = inicio;
+    for (int i = 0; i < totalPecas; i++) {
+        printf("[%c %d] ", fila[pos].tipo, fila[pos].id);
+        pos = (pos + 1) % TAMANHO_FILA;
+    }
+    printf("\n");
+}
+
+// Limpa o buffer do teclado
+void limparBuffer() {
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF);
+}
+
