@@ -17,3 +17,10 @@ int fim = 0;
 int totalPecas = 0;
 int proximoId = 0;
 
+// Protótipos das funções
+void gerarPeca();
+void enfileirar(struct Peca novaPeca);
+void desenfileirar();
+void mostrarFila();
+void limparBuffer();
+
